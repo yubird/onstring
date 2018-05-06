@@ -1,0 +1,71 @@
+/**
+ * vst.css for SmartPhone
+ */
+
+#header a.item {
+	width: 38px;
+	height: 38px;
+	padding: 6px;
+	overflow: hidden;
+}
+
+#header a.item i {
+	margin: 0 20px 0 4px;
+}
+
+#searchBox {
+	position: static;
+	width: 30vw;
+}
+
+#musicPlaylist div.items,
+#musicPlaylist div.items table {
+	width: calc(100vw - 80px);
+}
+
+#musicPlaylist #controller {
+	width: 300px;
+	height: 70px;
+	bottom: 70px;
+	left: calc((100% - 300px) / 2);
+}
+
+#musicPlaylist #controller #seekbar {
+	width: 180px;
+	height: 7px;
+	left: 110px;
+	top: 32px;
+}
+
+#musicPlaylist #controller #musicTitle {
+	width: 180px;
+	height: 22px;
+	top: 5px;
+	left: 110px;
+}
+
+#musicPlaylist #analyser {
+	display: none;
+}
+
+#musicPlaylist #controller #time {
+	height: 22px;
+	width: 170px;
+	left: 84px;
+	bottom: 6px;
+	text-align: left;
+	font-size: 8pt;
+}
+
+#musicPlaylist #controller #playControll {
+	display: none;
+}
+
+
+#musicPlaylist div.album i.dl {
+	display: none;
+}
+
+table.files thead #realTimeTv {
+	display: none;
+}

@@ -1,0 +1,34 @@
+@font-face {
+	font-family: 'Noto Sans Japanese';
+	font-style: normal;
+	font-weight: 400;
+	src: local('NotoSansJP-Regular.otf'),
+			 url(/lib/noto/NotoSansJP-Regular.woff2) format('woff2'),
+			 url(/lib/noto/NotoSansJP-Regular.woff) format('woff'),
+			 url(/lib/noto/NotoSansJP-Regular.otf) format('opentype');
+}
+
+@font-face {
+	font-family: 'Noto Sans Japanese';
+	font-style: normal;
+	font-weight: 700;
+	src: url(/lib/noto/NotoSansJP-Bold.woff2) format('woff2'),
+			 url(/lib/noto/NotoSansJP-Bold.woff) format('woff'),
+			 url(/lib/noto/NotoSansJP-Bold.otf) format('opentype');
+}
+
+@font-face {
+	font-family: 'Noto Serif Japanese';
+	font-style: normal;
+	font-weight: 400;
+	src: url(/lib/noto/NotoSerifCJKjp-Regular.otf) format('opentype'),
+       url(/lib/noto/NotoSerifCJKjp-Regular.woff) format('woff');
+}
+
+@font-face {
+	font-family: 'Noto Serif Japanese';
+	font-style: normal;
+	font-weight: 700;
+	src: url(/lib/noto/NotoSerifCJKjp-Bold.otf) format('opentype'),
+       url(/lib/noto/NotoSerifCJKjp-Bold.woff) format('woff');
+}

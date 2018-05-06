@@ -1,0 +1,57 @@
+version: '{branch}.{build}'
+
+environment:
+  REPORT_EXIT_STATUS: 1
+  matrix:
+    - BUILD_ENV: x86
+    - BUILD_ENV: x64
+
+branches:
+  only:
+    - master
+
+install:
+  - cmd: cinst wget
+
+build_script:
+- cmd: >-
+    "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" %BUILD_ENV%
+
+    wget http://windows.php.net/downloads/php-sdk/php-sdk-binary-tools-20110915.zip
+
+    7z x -y php-sdk-binary-tools-20110915.zip -oC:\projects\php-sdk
+
+    C:\projects\php-sdk\bin\phpsdk_setvars.bat
+
+    git clone --depth=1 https://github.com/php/php-src C:\projects\php-src
+
+    mkdir C:\projects\php-src\ext\apcu
+
+    xcopy C:\projects\apcu C:\projects\php-src\ext\apcu /s /e /y
+
+    wget http://windows.php.net/downloads/php-sdk/deps-7.0-vc14-%BUILD_ENV%.7z
+
+    7z x -y deps-7.0-vc14-%BUILD_ENV%.7z -oC:\projects\php-src
+
+    cd C:\projects\php-src
+
+    buildconf.bat
+
+    configure.bat --disable-all --enable-cli --enable-zts --enable-apcu=shared --with-config-file-scan-dir=C:\projects\apcu\bin\modules.d --with-prefix=C:\projects\apcu\bin --with-php-build=deps
+
+    nmake
+
+    nmake install
+
+    copy php.ini-development C:\projects\apcu\bin\php.ini
+
+    C:\projects\apcu\bin\php.exe -d extension_dir=C:\projects\apcu\bin\ext\ -d extension=php_apcu.dll -m
+
+test_script:
+  - cmd: C:\projects\apcu\bin\php.exe -n run-tests.php ext\apcu -n -d extension_dir=C:\projects\apcu\bin\ext\ -d extension=php_apcu.dll -d apc.enable=1 -d apc.enable_cli=1 -p C:\projects\apcu\bin\php.exe --show-diff --set-timeout 120
+
+artifacts:
+  - path: bin
+    name: master
+    type: zip
+

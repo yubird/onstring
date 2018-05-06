@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<meta http-equiv="Content-Language" content="ja"/>
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/>
+		<title>On</title>
+		<link rel="stylesheet" type="text/css" href="/lib/semantic-ui/semantic.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/lib/noto/noto_webfonts.css"/>
+		<link rel="stylesheet" type="text/css" href="/lib/vst.css?3.00"/>
+		<link rel="stylesheet" media="(max-width: 814px)" type="text/css" href="/lib/vst.phone.css?3.00"/>
+		<link rel="stylesheet" media="(max-width: 410px)" type="text/css" href="/lib/vst.phone.low.css?3.00"/>
+		<link rel="icon" type="image/png" href="/img/favicon.png"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script type="application/javascript" src="/lib/jquery.cookie.js"></script>
+		<script type="application/javascript" src="/lib/md5.js"></script>
+		<script type="application/javascript" src="/lib/dash.all.min.js"></script>
+		<script type="application/javascript" src="/lib/semantic-ui/semantic.min.js"></script>
+		<script type="application/javascript" src="/lib/analyser.js?1.05"></script>
+		<script type="application/javascript" src="/lib/vst.js?3.00"></script>
+	</head>
+	<body>
+		<div id="container" style="display: none;">
+			<div id="header" class="ui secondary pointing menu">
+				<div id="logo" class="header item" style="color: rgb(33, 133, 208) !important;">On</div>
+				<a class="blue item" data-page="anime" href="/?p=anime" title="アニメ">
+					<i class="icon film"></i>
+					アニメ
+				</a>
+				<a class="blue item tv" data-page="tv" href="/?p=tv" title="TV番組">
+					<i class="icon tv"></i>
+					TV番組
+				</a>
+				<a class="blue item music" data-page="music" href="/?p=music" title="ミュージック">
+					<i class="icon music"></i>
+					Music
+				</a>
+				<div class="right menu">
+					<div class="item tags" style="display: none;">
+						<i class="ui icon tags"></i>タグ
+					</div>
+					<div class="ui popup fluid transition hidden tags" style="min-width: 642px; margin-left: -290px;">
+					</div>
+				</div><!-- right menu -->
+					<div class="item" id="searchBox">
+						<div class="ui icon input small">
+							<input type="text" id="search" autocomplete="on" list="searchHistory" name="search" size="30" placeholder="検索">
+							<i class="search link icon"></i>
+						</div>
+						<datalist id="searchHistory"></datalist>
+					</div>
+				</div>
+			</div><!-- #header -->
+			<div class="ui popup bottom left transition hidden tvmenu">
+				<div class="ui vertical tv menu secondary">
+					<a class="blue item" data-a="c" href="/?p=tv">録画済</a>
+					<a class="blue item" data-a="s" href="/?p=tv&a=s">番組検索</a>
+					<a class="blue item" data-a="r" href="/?p=tv&a=r">キーワード予約</a>
+				</div>
+			</div><!-- popup menu -->
+			<div class="ui segment basic right aligned" style="padding: 4px 14px; 0px 14px; margin: 4px 0 -16px 0;">
+				<i class="ui icon html5" title="HTML5 ready"></i>
+				<i class="ui icon css3" title="CSS3 ready"></i>
+				<i class="ui icon firefox" title="Firefox ready"></i>
+				<i class="ui icon chrome" title="Google Chrome ready"></i>
+				<i class="ui icon microsoft edge" title="Microsoft Edge ready"></i>
+				<i class="ui icon android" title="Android ready"></i>
+				<i class="ui icon apple" title="iOS ready"></i>
+			</div>
+			<div id="content" class="ui segment basic">
+			</div>
+		</div><!-- #container -->
+		<div class="ui modal large" id="player">
+			<div class="videoTitle" style="">&nbsp;</div>
+			<div class="ui dimmable">
+				<div id="channelSelector"></div>
+				<div id="bitrate"></div>
+				<div class="state" style="">
+					<i class="ui icon large pause inverted"></i>
+				</div>
+				<video type="video/mp4"></video>
+			</div>
+		</div>
+		<div class="ui modal" id="auth" style="display: none;">
+			<div class="header">認証キーを入力してください</div>
+			<div class="content">
+				<div class="ui fluid input">
+					<input type="text" placeholder="">
+				</div>
+			</div>
+		</div>
+		<div class="ui modal" id="attention">
+			<div class="content">
+				<p class="ui red message">
+				このサイトのコンテンツは再圧縮等していません。<br>
+				特にBlu-ray版は非常にビットレートが高くなっていますので、
+				ストリーミング再生が出来ない場合があります。<br>
+				また、認証キーやURLを無断で共有・公開しないようお願いします</p>
+			</div>
+		</div>
+		<div class="ui modal" id="reserve">
+			<div class="header">番組予約</div>
+			<div class="content">
+				<div style="margin-bottom: 10px;">
+					<table class="ui basic definition table">
+						<tr>
+							<td style="width: 20%;">タイトル</td>
+							<td class="title"></td>
+						</tr>
+						<tr>
+							<td>予約状況</td>
+							<td class="reserveStat"></td>
+						</tr>
+						<tr>
+							<td>開始日時</td>
+							<td class="date"></td>
+						</tr>
+						<tr>
+							<td>長さ</td>
+							<td class="duration"></td>
+						</tr>
+						<tr>
+							<td>チャンネル</td>
+							<td style="vertical-align: middle;" class="channel"></td>
+						</tr>
+						<tr>
+							<td>番組内容</td>
+							<td class="detail"></td>
+						</tr>
+					</table>
+				</div>
+				<div class="ui buttons right floated">
+					<div class="ui button blue">予約する</div>
+				</div>
+				<div style="clear: right;"></div>
+			</div>
+		</div>
+		<div class="ui modal" id="ruleEditor">
+			<div class="header">キーワード予約</div>
+			<div class="content">
+				<div style="margin-bottom: 10px;" class="ui form">
+					<div class="ui field">
+						<label>キーワード</label>
+						<input class="keyword" type="text" value="">
+					</div>
+					<div class="ui field">
+						<label>チャンネル</div>
+						<select class="ui search dropdown fluid channel">
+						</select>
+					</div>
+					<div class="ui field">
+						<div class="ui button blue disabled right floated">登録する</div>
+						<div style="clear: right;"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<iframe id="musicDownload" style="display: none;"></iframe>
+		<div id="pageController">
+			<i class="ui icon angle double up icon"></i>
+			<i class="ui icon angle double down icon"></i>
+		</div>
+		<script type="application/javascript">
+			var vst = new Vst();
+			
+			vst.cache.elements.menu = $('#header');
+			vst.cache.elements.content = $('#content');
+			$(document).ready(function() {
+				vst.init();
+			});
+			if (!vst.isMobile()) {
+				$('a.item.tv').popup({
+					popup: 'div.tvmenu',
+					delay: {
+						show: 20,
+						hide: 800
+					},
+					hoverable: true,
+					inline: true,
+					transition: 'slide down'
+				});
+				$('div.item.tags').popup({
+					popup: 'div.popup.tags',
+					delay: {
+						show: 20,
+						hide: 800
+					},
+					position: 'bottom center',
+					hoverable: true,
+					inline: true,
+					transition: 'slide down'
+				});
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,3 @@
+[submodule "bc"]
+	path = bc
+	url = https://github.com/krakjoe/apcu-bc

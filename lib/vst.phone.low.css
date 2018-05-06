@@ -1,0 +1,17 @@
+#musicPlaylist div.cover img {
+	width: calc(100vw - 60px);
+	height: auto;
+}
+
+#musicPlaylist div.cover {
+	width: auto;
+	height: auto;
+}
+
+#musicPlaylist div.album i.dl {
+	display: none;
+}
+
+table.files thead #realTimeTv {
+	display: none;
+}

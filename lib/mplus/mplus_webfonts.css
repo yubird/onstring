@@ -1,0 +1,21 @@
+@font-face{ 
+  font-family: 'mplus-2p-regular';
+  src: url('/lib/mplus/mplus-2p-regular.eot');
+  src: url('/lib/mplus/mplus-2p-regular.eot?#iefix') format('embedded-opentype'),
+       url('/lib/mplus/mplus-2p-regular.woff') format('woff'),
+       url('/lib/mplus/mplus-2p-regular.ttf') format('truetype');
+}
+@font-face{ 
+  font-family: 'mplus-2c-bold';
+  src: url('/lib/mplus/mplus-2m-bold.eot');
+  src: url('/lib/mplus/mplus-2m-bold.eot?#iefix') format('embedded-opentype'),
+       url('/lib/mplus/mplus-2m-bold.woff') format('woff'),
+       url('/lib/mplus/mplus-2m-bold.ttf') format('truetype');
+}
+@font-face{ 
+  font-family: 'mplus-2c-regular';
+  src: url('/lib/mplus/mplus-2c-regular.eot');
+  src: url('/lib/mplus/mplus-2c-regular.eot?#iefix') format('embedded-opentype'),
+       url('/lib/mplus/mplus-2c-regular.woff') format('woff'),
+       url('/lib/mplus/mplus-2c-regular.ttf') format('truetype');
+}

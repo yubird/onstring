@@ -10,6 +10,11 @@ if (isset($_GET['f'])) {
 	header('HTTP/1.0 404 Not Found');
 	exit;
 }
+if (isset($_GET['name'])) {
+	$fileName = rawurldecode($_GET['name']);
+} else {
+	$fileName = basename($file);
+}
 $size   = filesize($file); // File size
 $length = $size;           // Content length
 $start  = 0;               // Start byte
@@ -17,7 +22,7 @@ $end    = $size - 1;       // End byte
 
 if (isset($_GET['m']) && $_GET['m'] == 'dl') {
 	header('Content-Type: application/octet-stream');
-	header('Content-Disposition: attachment; filename="'.basename($file).'"');
+	header('Content-Disposition: attachment; filename="'.$fileName.'"');
 	//header('X-LIGHTTPD-send-file: '.$file);
 	header("Content-Length: ".$length);
 	header('X-Sendfile2: '

@@ -30,12 +30,15 @@ if (!file_exists($outDir.$s.$outFile)) {
 		if (file_exists($outDir.$s.$outFile)) {
 			unlink($outDir.$s.$outFile);
 		}
+		$filePath = realpath(dirname(__FILE__).'/../img/channels/unknown.png');
+		$fileSize = filesize($filePath);
 		header('Content-Type: image/png');
-		header('X-LIGHTTPD-send-file: '
-			.realpath(dirname(__FILE__).'/../img/channels/unknown.png'));
+		header('X-Accel-Redirect: /img/channels/unknown.png');
 		exit;
 	}
 }
+$filePath = realpath($outDir.$s.$outFile);
+$fileSize = filesize($filePath);
 header('Content-Type: image/jpeg');
-header('X-LIGHTTPD-send-file: '.realpath($outDir.$s.$outFile));
+header('X-Accel-Redirect: /img/thumbnails/'.$s.$outFile);
 ?>

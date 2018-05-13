@@ -185,8 +185,14 @@ tr.reserved a {
 }
 
 #player {
-	background-color: #000000;
-	min-height: 340px;
+	background-color: rgba(0,0,0,0.4);
+	left: 0;
+	top: 50%;
+	width: 100vw;
+	margin-left: 0;
+	margin-right: 0;
+	margin-bottom: 0;
+	border-radius: 0 !important;
 }
 
 #player div.videoTitle {
@@ -195,7 +201,144 @@ tr.reserved a {
 	height: 38px;
 	line-height: 38px;
 	padding: 0 12px;
-	background-color: #ffffff;
+	color: #ffffff;
+}
+
+#player #controller {
+	width: 100vw;
+	height: 48px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	z-index: 20;
+	background-color: rgba(0,0,0,0.18);
+	color: #ffffff;
+	line-height: 48px;
+	box-sizing: border-box;
+	padding: 0;
+	box-shadow: 0 -2px 6px 3px rgba(0,0,0,0.1);
+	display: none;
+}
+
+#player #controller i {
+	cursor: pointer;
+	position: absolute;
+	top: 0;
+	z-index: 3;
+	font-size: 14pt;
+}
+
+#player #controller i:nth-child(1) {
+	left: 16px;
+}
+#player #controller i:nth-child(2) {
+	left: 48px;
+}
+#player #controller i:nth-child(3) {
+	left: 80px;
+}
+#player #controller i.signal {
+	right: 42px;
+}
+#player #controller i.expand {
+	right: 10px;
+}
+
+#player #controller #seekbar {
+	width: calc(100vw - 414px);
+	height: 7px;
+	box-sizing: border-box;
+	position: absolute;
+	left: 112px;
+	top: 20px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: rgba(0,0,0,0.3);
+	background-color: rgba(255,255,255,0.2);
+	box-sizing: border-box;
+	border-radius: 3px;
+	cursor: pointer;
+	box-shadow: 0 0 4px 2px rgba(0,0,0,0.2) inset;
+	z-index: 3;
+	overflow: hidden;
+}
+
+#player #controller #seekbar #gage {
+	height: 7px;
+	width: 0%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	background-color: rgba(50,119,255,0.7);
+	border-radius: 2px;
+	z-index: 4;
+}
+
+#player #controller #time {
+	height: 22px;
+	width: 170px;
+	font-size: 13px;
+	position: absolute;
+	line-height: 22px;
+	right: 214px;
+	top: 12px;
+	text-align: right;
+	color: rgba(255,255,255,0.6);
+	cursor: default;
+	z-index: 3;
+}
+
+#player #controller #volumeContainer {
+	width: 128px;
+	height: 22px;
+	line-height: 22px;
+	position: absolute;
+	right: 80px;
+	top: 14px;
+	z-index: 3;
+}
+
+#player #controller #volumeContainer i.volume {
+	width: 22px;
+	height: 22px;
+	line-height: 22px;
+	position: absolute;
+	left: 5px;
+	top: -2px;
+	cursor: pointer;
+	color: rgba(255,255,255,0.6);
+	z-index: 3;
+}
+
+#player #controller #volumeController {
+	width: 100px;
+	height: 7px;
+	box-sizing: border-box;
+	background-color: rgba(255,255,255,0.14);
+	border-style: solid;
+	border-width: 1px;
+	border-color: rgba(0,0,0,0.3);
+	background-color: rgba(255,255,255,0.2);
+	box-sizing: border-box;
+	border-radius: 3px;
+	cursor: pointer;
+	box-shadow: 0 0 4px 2px rgba(0,0,0,0.15) inset;
+	position: absolute;
+	right: 0;
+	bottom: 9px;
+	z-index: 4;
+	overflow: hidden;
+}
+
+#player #controller #volumeController #volumeGage {
+	height: 7px;
+	width: 0%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	background-color: rgba(50,119,255,0.7);
+	border-radius: 2px;
+	z-index: 5;
 }
 
 #player div.dimmable {
@@ -209,7 +352,6 @@ tr.reserved a {
 	margin: 0;
 	top: calc(50% - 94px);
 	left: calc(50% - 340px);
-	background-color: rgba(0, 0, 0, 0.5);
 	color: #ffffff;
 	font-size: 13pt;
 	display: none;
@@ -331,7 +473,7 @@ tr.reserved a {
 	text-align: right;
 }
 
-#player .videoTitle i {
+#player .videoTitle i.signal {
 	display: none;
 	position: absolute;
 	right: 10px;

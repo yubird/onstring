@@ -1,4 +1,6 @@
 <?php
+ini_set('apc.enabled', 0);
+ini_set('opcache.enable', 0);
 include dirname(__FILE__).'/../common/settings.php';
 include dirname(__FILE__).'/../common/functions.php';
 if (isset($_GET['f'])) {
@@ -15,36 +17,15 @@ if (isset($_GET['name'])) {
 } else {
 	$fileName = basename($file);
 }
+/*
 $size   = filesize($file); // File size
 $length = $size;           // Content length
 $start  = 0;               // Start byte
 $end    = $size - 1;       // End byte
 
-if (isset($_GET['m']) && $_GET['m'] == 'dl') {
-	header('Content-Type: application/octet-stream');
-	header('Content-Disposition: attachment; filename="'.$fileName.'"');
-	//header('X-LIGHTTPD-send-file: '.$file);
-	header("Content-Length: ".$length);
-	header('X-Sendfile2: '
-		.str_replace(' ', '%20', $file).' '.$start.'-'.$end
-	);
-	/*
-	$fp = fopen($file, 'rb');
-	while (!feof($fp)) {
-		echo fread($fp, 16384);
-	}
-	fclose($fp);
-	*/
-	exit;
-}
-
-header('Content-Type: video/mp4');
-header('Accept-Ranges: 0-'.$length);
 if (isset($_SERVER['HTTP_RANGE'])) {
-
 	$c_start = $start;
 	$c_end   = $end;
-
 	list(, $range) = explode('=', $_SERVER['HTTP_RANGE'], 2);
 	if (strpos($range, ',') !== false) {
 		header('HTTP/1.1 416 Requested Range Not Satisfiable');
@@ -70,11 +51,21 @@ if (isset($_SERVER['HTTP_RANGE'])) {
 	$length = $end - $start + 1;
 	header('HTTP/1.1 206 Partial Content');
 }
-
+*/
+if (isset($_GET['m']) && $_GET['m'] == 'dl') {
+	header('Content-Type: application/octet-stream');
+	header('Content-Disposition: attachment; filename="'.$fileName.'"');
+} else {
+	header('Content-Type: video/mp4');
+}
+/*
+header('Accept-Ranges: 0-'.$length);
 header("Content-Range: bytes $start-$end/$size");
 header("Content-Length: ".$length);
 header('X-Sendfile2: '
 	.str_replace(' ', '%20', $file).' '.$start.'-'.$end
 );
-exit();
+*/
+header('X-Accel-Redirect: '.str_replace('/var/www/video', '', $file));
+exit;
 ?>

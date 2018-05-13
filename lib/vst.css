@@ -276,7 +276,7 @@ tr.reserved a {
 
 #player #controller #time {
 	height: 22px;
-	width: 170px;
+	width: 80px;
 	font-size: 13px;
 	position: absolute;
 	line-height: 22px;
@@ -339,6 +339,25 @@ tr.reserved a {
 	background-color: rgba(50,119,255,0.7);
 	border-radius: 2px;
 	z-index: 5;
+}
+
+#player #thumbnail {
+	width: 136px;
+	height: 84px;
+	background-color: rgba(0,0,0,0.25);
+	position: absolute;
+	left: 0;
+	bottom: 58px;
+	z-index: 21;
+	border-radius: 4px;
+	margin-left: 110px;
+	display: none;
+}
+
+#player #thumbnail img {
+	border: none;
+	outline: none;
+	margin: 8px;
 }
 
 #player div.dimmable {

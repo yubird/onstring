@@ -13,6 +13,7 @@ define('COVERART_DIR', '/var/www/video/img/cover/');
 define('VTT_PATH', '/var/www/video/vtt/');
 define('ITUNES_PATH', '/mnt/home/yubird/iTunes/Music/');
 define('THUMBNAIL_SIZE', '853x480');
+define('PLAYER_THUMBNAIL_SIZE', '120x68');
 define('FFMPEG_BINARY', '/usr/local/bin/ffmpeg');
 define('MP4BOX_BINARY', '/usr/local/bin/MP4Box');
 define('FFPROBE_BINARY', '/usr/local/bin/ffprobe');

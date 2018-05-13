@@ -15,7 +15,7 @@ if (isset($_GET['c'])) {
 if (!isset($_GET['t'])) {
 	$t = 0;
 } else {
-	$t = $_GET['t'];
+	$t = round($_GET['t'], 1);
 }
 $split = array();
 for ($i = 0; $i < 4; ++$i) {
@@ -31,7 +31,7 @@ if (file_exists($baseDir.$fileName)) {
 	header('X-Accel-Redirect: '.str_replace('/var/www/video', '', $image));
 	exit;
 }
-$command = FFMPEG_BINARY.' -r 15 -ss '.$t.' -i "'.$file.'" '
+$command = FFMPEG_BINARY.' -r 24 -ss '.$t.' -i "'.$file.'" '
 	.'-vframes 1 '
 	.'-f image2 -s '.PLAYER_THUMBNAIL_SIZE.' '
 	.$baseDir.$fileName;

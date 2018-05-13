@@ -185,7 +185,7 @@ tr.reserved a {
 }
 
 #player {
-	background-color: rgba(0,0,0,0.4);
+	background-color: rgba(0,0,0,0.2);
 	left: 0;
 	top: 50%;
 	width: 100vw;
@@ -216,7 +216,7 @@ tr.reserved a {
 	line-height: 48px;
 	box-sizing: border-box;
 	padding: 0;
-	box-shadow: 0 -2px 6px 3px rgba(0,0,0,0.1);
+	/*box-shadow: 0 -2px 6px 3px rgba(0,0,0,0.1);*/
 	display: none;
 }
 
@@ -344,10 +344,10 @@ tr.reserved a {
 #player #thumbnail {
 	width: 136px;
 	height: 84px;
-	background-color: rgba(0,0,0,0.25);
+	background-color: rgba(0,0,0,0.18);
 	position: absolute;
 	left: 0;
-	bottom: 58px;
+	bottom: 55px;
 	z-index: 21;
 	border-radius: 4px;
 	margin-left: 110px;

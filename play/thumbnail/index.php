@@ -3,6 +3,7 @@ include dirname(__FILE__).'/../../common/settings.php';
 include dirname(__FILE__).'/../../common/functions.php';
 
 $dir = THUMBNAIL_DIR;
+$expires = 60 * 60 * 24 * 90;
 header('Content-Type: image/png');
 if (isset($_GET['c'])) {
 	$md5 = $_GET['c'];
@@ -15,7 +16,7 @@ if (isset($_GET['c'])) {
 if (!isset($_GET['t'])) {
 	$t = 0;
 } else {
-	$t = round($_GET['t'], 1);
+	$t = $_GET['t'];
 }
 $split = array();
 for ($i = 0; $i < 4; ++$i) {
@@ -28,10 +29,11 @@ if (!file_exists($baseDir)) {
 }
 if (file_exists($baseDir.$fileName)) {
 	$image = $baseDir.$fileName;
+	header('X-Accel-Expires: '.$expires);
 	header('X-Accel-Redirect: '.str_replace('/var/www/video', '', $image));
 	exit;
 }
-$command = FFMPEG_BINARY.' -r 24 -ss '.$t.' -i "'.$file.'" '
+$command = FFMPEG_BINARY.' -r 1 -ss '.$t.' -i "'.$file.'" '
 	.'-vframes 1 '
 	.'-f image2 -s '.PLAYER_THUMBNAIL_SIZE.' '
 	.$baseDir.$fileName;
@@ -41,6 +43,7 @@ if (!file_exists($baseDir.$fileName)) {
 } else {
 	$image = $baseDir.$fileName;
 }
+header('X-Accel-Expires: '.$expires);
 header('X-Accel-Redirect: '.str_replace('/var/www/video', '', $image));
 exit;
 ?>

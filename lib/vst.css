@@ -211,7 +211,7 @@ tr.reserved a {
 	bottom: 0;
 	left: 0;
 	z-index: 20;
-	background-color: rgba(0,0,0,0.18);
+	background-color: rgba(0,0,0,0.25);
 	color: #ffffff;
 	line-height: 48px;
 	box-sizing: border-box;
@@ -244,23 +244,33 @@ tr.reserved a {
 	right: 10px;
 }
 
+#player #controller #seekbarOuter {
+	width: calc(100vw - 414px);
+	height: 19px;
+	position: absolute;
+	left: 112px;
+	top: 14px;
+	z-index: 3;
+	padding: 0;
+	margin: 0;
+	cursor: pointer;
+}
+
 #player #controller #seekbar {
 	width: calc(100vw - 414px);
 	height: 7px;
 	box-sizing: border-box;
-	position: absolute;
-	left: 112px;
-	top: 20px;
 	border-style: solid;
 	border-width: 1px;
 	border-color: rgba(0,0,0,0.3);
 	background-color: rgba(255,255,255,0.2);
 	box-sizing: border-box;
 	border-radius: 3px;
-	cursor: pointer;
 	box-shadow: 0 0 4px 2px rgba(0,0,0,0.2) inset;
-	z-index: 3;
 	overflow: hidden;
+	position: absolute;
+	left: 0;
+	top: 6px;
 }
 
 #player #controller #seekbar #gage {
@@ -344,7 +354,7 @@ tr.reserved a {
 #player #thumbnail {
 	width: 136px;
 	height: 84px;
-	background-color: rgba(0,0,0,0.18);
+	background-color: rgba(0,0,0,0.25);
 	position: absolute;
 	left: 0;
 	bottom: 55px;
@@ -437,9 +447,8 @@ tr.reserved a {
 	top: 12px;
 	left: 12px;
 	z-index: 99;
-	background-color: rgb(0,0,0);
+	background-color: rgba(0,0,0,0.25);
 	color: white;
-	opacity: 0.5;
 	width: auto;
 	height: 68px;
 	line-height: 14px;

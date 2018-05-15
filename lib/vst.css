@@ -245,7 +245,7 @@ tr.reserved a {
 }
 
 #player #controller #seekbarOuter {
-	width: calc(100vw - 414px);
+	width: calc(100vw - 448px);
 	height: 19px;
 	position: absolute;
 	left: 112px;
@@ -257,7 +257,7 @@ tr.reserved a {
 }
 
 #player #controller #seekbar {
-	width: calc(100vw - 414px);
+	width: calc(100vw - 448px);
 	height: 7px;
 	box-sizing: border-box;
 	border-style: solid;
@@ -286,7 +286,7 @@ tr.reserved a {
 
 #player #controller #time {
 	height: 22px;
-	width: 80px;
+	width: 120px;
 	font-size: 13px;
 	position: absolute;
 	line-height: 22px;
@@ -352,8 +352,8 @@ tr.reserved a {
 }
 
 #player #thumbnail {
-	width: 136px;
-	height: 84px;
+	width: 176px;
+	height: 107px;
 	background-color: rgba(0,0,0,0.25);
 	position: absolute;
 	left: 0;
@@ -362,6 +362,19 @@ tr.reserved a {
 	border-radius: 4px;
 	margin-left: 110px;
 	display: none;
+}
+
+#player #thumbnail #targetTime {
+	width: 100%;
+	height: 18px;
+	position: absolute;
+	left: 0;
+	bottom: 8px;
+	text-align: center;
+	line-height: 18px;
+	font-size: 11pt;
+	color: #ffffff;
+	text-shadow: 1px 1px 0 #000;
 }
 
 #player #thumbnail img {

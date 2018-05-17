@@ -202,6 +202,9 @@ tr.reserved a {
 	line-height: 38px;
 	padding: 0 12px;
 	color: #ffffff;
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
 }
 
 #player #controller {
@@ -296,6 +299,9 @@ tr.reserved a {
 	color: rgba(255,255,255,0.6);
 	cursor: default;
 	z-index: 3;
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
 }
 
 #player #controller #volumeContainer {
@@ -313,11 +319,21 @@ tr.reserved a {
 	height: 22px;
 	line-height: 22px;
 	position: absolute;
-	left: 5px;
+	left: 3px;
 	top: -2px;
 	cursor: pointer;
 	color: rgba(255,255,255,0.6);
 	z-index: 3;
+}
+
+#player #controller #volumeOuter {
+	width: 100px;
+	height: 19px;
+	top: 0;
+	right: 0;
+	cursor: pointer;
+	position: absolute;
+	z-index: 4;
 }
 
 #player #controller #volumeController {
@@ -335,8 +351,7 @@ tr.reserved a {
 	box-shadow: 0 0 4px 2px rgba(0,0,0,0.15) inset;
 	position: absolute;
 	right: 0;
-	bottom: 9px;
-	z-index: 4;
+	top: 6px;
 	overflow: hidden;
 }
 

@@ -219,7 +219,6 @@ tr.reserved a {
 	line-height: 48px;
 	box-sizing: border-box;
 	padding: 0;
-	/*box-shadow: 0 -2px 6px 3px rgba(0,0,0,0.1);*/
 	display: none;
 }
 
@@ -903,9 +902,23 @@ tr.reserved a {
 	color: rgba(255,255,255,0.9);
 }
 
+#musicPlaylist #controller #musicType {
+	height: 22px;
+	width: 110px;
+	font-size: 12px;
+	position: absolute;
+	line-height: 22px;
+	right: 230px;
+	bottom: 7px;
+	text-align: right;
+	color: rgba(255,255,255,0.6);
+	cursor: default;
+	z-index: 3;
+}
+
 #musicPlaylist #controller #time {
 	height: 22px;
-	width: 170px;
+	width: 88px;
 	font-size: 12px;
 	position: absolute;
 	line-height: 22px;
@@ -923,7 +936,7 @@ tr.reserved a {
 	line-height: 22px;
 	position: absolute;
 	right: 10px;
-	bottom: 4px;
+	bottom: 3px;
 	z-index: 3;
 }
 

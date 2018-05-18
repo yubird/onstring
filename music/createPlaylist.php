@@ -53,7 +53,9 @@ function getMusicInfo($file) {
 		'created' => null,
 		'year' => null,
 		'updated' => date('Y-m-d H:i', filemtime($file)),
-		'file' => '/music/play/?c='.eszEncodeUrl($shortFile)
+		'file' => '/music/play/?c='.eszEncodeUrl($shortFile),
+		'type' => null,
+		'bitrate' => null
 	);
 	$command = FFPROBE_BINARY.' -hide_banner -i "'.$file.'" 2>&1';
 	exec($command, $output, $ret);
@@ -143,7 +145,13 @@ function getMusicInfo($file) {
 		) {
 			$info['year'] = $matches[1];
 		}
-
+		$regExp = '/^Stream.*Audio: (aac|mp3).*, ([0-9]{2,3}) kb\/s/';
+		if ($info['type'] == null &&
+			preg_match($regExp, $tmpLine, $matches)
+		) {
+			$info['type'] = strtoupper($matches[1]);
+			$info['bitrate'] = $matches[2];
+		}
 	}
 	if ($info['title'] == null || $info['duration'] == null) {
 		return false;

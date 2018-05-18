@@ -68,7 +68,9 @@ foreach ($items as $item) {
 		}
 		echo '			<td class="number">',$s2, '</td>';
 		echo '			<td class="title" data-src="',$file['file'],'" ';
-		echo 'data-artist="',htmlspecialchars($file['artist']),'">';
+		echo 'data-artist="',htmlspecialchars($file['artist']),'" ';
+		echo 'data-bitrate="',$file['bitrate'],'" ';
+		echo 'data-type="',$file['type'],'">';
 		echo htmlspecialchars($file['title']),'</td>';
 		echo '			<td class="duration">';
 		echo substr($file['duration'], 3),'</td>';
@@ -96,6 +98,7 @@ foreach ($items as $item) {
 			<i class="ui icon undo"></i>
 			<i class="ui icon random"></i>
 		</div>
+		<div id="musicType"></div>
 		<div id="time">00:00&nbsp;/&nbsp;00:00</div>
 		<div id="volumeContainer">
 			<i class="ui icon volume up"></i>

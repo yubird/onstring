@@ -48,6 +48,10 @@
 	display: none;
 }
 
+#musicPlaylist #controller #musicType {
+	display: none;
+}
+
 #musicPlaylist #controller #time {
 	height: 22px;
 	width: 170px;

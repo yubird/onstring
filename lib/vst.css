@@ -106,6 +106,10 @@ table.files td.titles img {
 	border-radius: 3px;
 }
 
+#content {
+	min-height: calc(100% - (45px + 30px));
+}
+
 table.files td.titles span.item span,
 table.files td.titles div.content span,
 table.files td.keywords span {

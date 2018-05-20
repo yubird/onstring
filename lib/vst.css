@@ -199,6 +199,11 @@ tr.reserved a {
 	margin-top: 0;
 }
 
+#player video {
+	outline: none;
+	background-color: #000000;
+}
+
 #player div.videoTitle {
 	font-weight: 400;
 	font-size: 1em;

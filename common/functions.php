@@ -130,6 +130,26 @@ function sortByUpdateDate($a, $b) {
 }
 
 function sortByFileName($a, $b) {
+	$movies = array('.mp4', '.mkv', '.ts', '.avi');
+	$ax = 0;
+	$bx = 0;
+	foreach ($movies as $mov) {
+		if (strpos($a->name, $mov) !== false) {
+			$ax = -1;
+			break;
+		}
+	}
+	foreach ($movies as $mov) {
+		if (strpos($b->name, $mov) !== false) {
+			$bx = -1;
+			break;
+		}
+	}
+	if ($ax < $bx) {
+		return -1;
+	} else if ($ax > $bx) {
+		return 1;
+	}
 	return strcmp($a->name, $b->name);
 }
 

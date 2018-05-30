@@ -106,6 +106,10 @@ table.files td.titles img {
 	border-radius: 3px;
 }
 
+table.files a.played {
+	color: rgb(16,24,92) !important;
+}
+
 #content {
 	min-height: calc(100% - (45px + 30px));
 }

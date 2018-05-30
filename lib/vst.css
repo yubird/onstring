@@ -478,6 +478,25 @@ tr.reserved a {
 	font-weight: 400;
 }
 
+#player div.loading {
+	position: absolute;
+	bottom: calc((100% / 2) - 23px);
+	left: calc((100% / 2) - 32px);
+	z-index: 99;
+	width: 64px;
+	height: 64px;
+	line-height: 64px;
+	text-align: center;
+	display: none;
+}
+
+#player div.loading i {
+	margin: 0;
+	font-weight: 400;
+	font-size: 54px;
+	color: #ffffff;
+}
+
 #player #videoInfo {
 	position: absolute;
 	top: 12px;

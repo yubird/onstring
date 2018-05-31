@@ -471,7 +471,7 @@ tr.reserved a {
 	background-color: rgba(0, 0, 0, 0.5);
 	width: 64px;
 	height: 46px;
-	line-height: 46px;
+	line-height: 42px;
 	border-radius: 4px;
 	text-align: center;
 	display: none;
@@ -479,7 +479,8 @@ tr.reserved a {
 
 #player div.state i {
 	margin: 0;
-	font-weight: 400;
+	font-weight: 100;
+	font-size: 20px;
 }
 
 #player div.loading {

@@ -106,8 +106,12 @@ table.files td.titles img {
 	border-radius: 3px;
 }
 
-table.files a.played {
-	color: rgb(44,44,92) !important;
+table.files a.played div.content span::after {
+	content: "\f00c";
+	font-family: Icons;
+	font-style: normal;
+	text-align: center;
+	margin-left: 8px;
 }
 
 #content {

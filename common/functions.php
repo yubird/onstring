@@ -188,6 +188,7 @@ function parseDir($rootDir, $sortBy) {
 				if ($count > 0) {
 					$titles[$k] = new StdClass;
 					$titles[$k]->name = $t;
+					$titles[$k]->subName = null;
 					$titles[$k]->fullPath = realpath($rootDir.'/'.$t).'/';
 					$titles[$k]->playUrl = null;
 					$titles[$k]->count = $count;
@@ -208,6 +209,7 @@ function parseDir($rootDir, $sortBy) {
 				}
 				$titles[$k] = new StdClass;
 				$titles[$k]->name = replaceName($t);
+				$titles[$k]->subName = getSubName($titles[$k]->name);
 				$titles[$k]->fullPath = $rootDir.$t;
 				$titles[$k]->playUrl = playUrl($rootDir.'/'.$t);
 				$titles[$k]->count = 1;
@@ -326,8 +328,20 @@ function replaceName($str) {
 		'',
 		$str
 	);
-	//return $str;
+	if (preg_match('/#\.(mp4|ts|mkv|avi)$/', $str, $matches)) {
+		return mb_convert_kana($matches[1], 'KVa');
+	}
 	return mb_convert_kana($str, 'KVa');
+}
+
+function getSubName($str) {
+	$tmp = explode('.', $str);
+	$name = str_replace('.'.$tmp[1], '', $str);
+	$tmp = explode('#', $name);
+	if (isset($tmp[1]) && strlen($tmp[1]) > 0) {
+		return $tmp[1];
+	}
+	return null;
 }
 
 function replaceUnknown($string) {

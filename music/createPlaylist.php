@@ -27,16 +27,24 @@ function isDotFile($fileName) {
 }
 
 function scanItems($path, $type) {
-	if ($type == 'dir') {
-		$fromItems = glob($path.'*', GLOB_ONLYDIR);
-	} else {
-		$fromItems = glob($path.'*.{m4a,mp4,mp3}', GLOB_BRACE);
-	}
 	$items = array();
-	foreach ($fromItems as $item) {
-		$items[] = basename($item);
+	$dp = opendir($path);
+	if ($type == 'dir') {
+		while (($p = readdir($dp)) !== false) {
+			if (is_dir($path.'/'.$p) && !isDotFile($p)) {
+				$items[] = $p;
+			}
+		}
+	} else {
+		while (($p = readdir($dp)) !== false) {
+			if (is_file($path.'/'.$p) && isPlayableMusic($p)) {
+				$items[] = $p;
+			}
+		}
 	}
-	return $items;
+	closedir($dp);
+	usort($items, 'strnatcmp');
+	return $fromItems;
 }
 
 function getMusicInfo($file) {
@@ -231,7 +239,14 @@ function getCover($albumPath, $file) {
 				.$albumPath.$file.'" 2>&1';
 			exec($command, $output, $ret);
 			if ($ret == 0) {
-				$files = glob($albumPath.'*.{jpg,png,JPG,PNG}', GLOB_BRACE);
+				$dp = opendir($albumPath);
+				$files = array();
+				while (($px = readdir($dp)) !== false) {
+					if (is_file($albumPath.'/'.$px)) {
+						$files[] = $albumPath.'/'.$px;
+					}
+				}
+				closedir($dp);
 				foreach ($files as $file) {
 					$lower = strtolower($file);
 					$explode = explode('.', $lower);

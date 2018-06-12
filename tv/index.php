@@ -11,7 +11,7 @@ if (isset($_GET['p']) && strlen($_GET['p'])) {
 	$rootDir .= rawurldecode($_GET['p']).'/';
 }
 $titles = apcu_fetch('list_'.md5($rootDir.$sortBy));
-if ($titles === false) {
+if (true || $titles === false) {
 	$titles = parseDir($rootDir, $sortBy);
 	apcu_store('list_'.md5($rootDir.$sortBy), $titles, 60 * 10);
 }

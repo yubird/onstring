@@ -207,9 +207,11 @@ function parseDir($rootDir, $sortBy) {
 				if ($size < 1024 * 1024) {
 					continue;
 				}
+				$tmpNames = getSubName($t);
 				$titles[$k] = new StdClass;
-				$titles[$k]->name = replaceName($t);
-				$titles[$k]->subName = getSubName($titles[$k]->name);
+				//$titles[$k]->name = replaceName($t);
+				$titles[$k]->name = $tmpNames[0].'.'.$tmpNames[2];
+				$titles[$k]->subName = $tmpNames[1];
 				$titles[$k]->fullPath = $rootDir.$t;
 				$titles[$k]->playUrl = playUrl($rootDir.'/'.$t);
 				$titles[$k]->count = 1;
@@ -335,13 +337,24 @@ function replaceName($str) {
 }
 
 function getSubName($str) {
-	$tmp = explode('.', $str);
+	$base = replaceName($str);
+	$tmp = explode('.', $base);
+	$left = $tmp[0];
+	$exp = $tmp[count($tmp) - 1];
 	$name = str_replace('.'.$tmp[1], '', $str);
 	$tmp = explode('#', $name);
 	if (isset($tmp[1]) && strlen($tmp[1]) > 0) {
-		return $tmp[1];
+		return array($tmp[0], $tmp[1], $exp);
 	}
-	return null;
+	$regExp = '/(.*)「(.*)」\.(ts|mp4)$/';
+	if (preg_match($regExp, $base, $matches)) {
+		return array($matches[1], $matches[2], $exp);
+	}
+	$regExp = '/(.*)▽(.*)\.(ts|mp4)$/';
+	if (preg_match($regExp, $base, $matches)) {
+		return array($matches[1], $matches[2], $exp);
+	}
+	return array($left, '', $exp);
 }
 
 function replaceUnknown($string) {

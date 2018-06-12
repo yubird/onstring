@@ -25,7 +25,9 @@ if (isset($_GET['m']) && $_GET['m'] == 'dl') {
 } else {
 	header('Content-Type: video/mp4');
 }
+
+$tmpUrl = str_replace('/var/www/video', '', $file);
 header('X-Accel-Expires: '.$expires);
-header('X-Accel-Redirect: '.str_replace('/var/www/video', '', $file));
+header('X-Accel-Redirect: '.rawurlencode($tmpUrl));
 exit;
 ?>

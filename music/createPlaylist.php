@@ -44,7 +44,7 @@ function scanItems($path, $type) {
 	}
 	closedir($dp);
 	usort($items, 'strnatcmp');
-	return $fromItems;
+	return $items;
 }
 
 function getMusicInfo($file) {

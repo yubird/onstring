@@ -9,6 +9,7 @@ $blackList = array(
 $fource = isset($argv[1])? true: false;
 
 function isPlayableMusic($str) {
+	$str = strtolower($str);
 	if (strpos($str, '.m4a') !== false ||
 			strpos($str, '.mp3') !== false ||
 			strpos($str, '.mp4') !== false

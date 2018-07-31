@@ -12,8 +12,12 @@ if (isset($_GET['p']) && strlen($_GET['p'])) {
 	$sortBy = LIST_SUB_SORT;
 	$rootDir .= rawurldecode($_GET['p']).'/';
 }
+$disableCache = false;
+if (isset($_GET['direct'])) {
+	$disableCache = true;
+}
 $titles = apcu_fetch('list_'.md5($rootDir.$sortBy));
-if ($titles === false) {
+if ($titles === false || $disableCache) {
 	$titles = parseDir($rootDir, $sortBy);
 	apcu_store('list_'.md5($rootDir.$sortBy), $titles, 60 * 20);
 }

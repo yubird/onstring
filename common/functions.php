@@ -209,9 +209,13 @@ function parseDir($rootDir, $sortBy) {
 				}
 				$tmpNames = getSubName($t);
 				$titles[$k] = new StdClass;
-				//$titles[$k]->name = replaceName($t);
-				$titles[$k]->name = $tmpNames[0].'.'.$tmpNames[2];
-				$titles[$k]->subName = $tmpNames[1];
+				$titles[$k]->name = str_replace(
+					array('#.mp4', '#.ts'), array('.mp4', '.ts'),
+					replaceName($t)
+				);
+				$titles[$k]->subName = null;
+				//$titles[$k]->name = $tmpNames[0].'.'.$tmpNames[2];
+				//$titles[$k]->subName = $tmpNames[1];
 				$titles[$k]->fullPath = $rootDir.$t;
 				$titles[$k]->playUrl = playUrl($rootDir.'/'.$t);
 				$titles[$k]->count = 1;
@@ -323,34 +327,41 @@ function replaceName($str) {
 	$str = mb_convert_kana($str, 'KVns');
 	$str = preg_replace(
 		array(
-			'/\[[0-9]+\-[0-9]+\]/',
-			'/\[[GR|BS].*\]/',
-			'/GR[0-9]+_[0-9]+_/'
+			'/\[.*\]/'
 		),
 		'',
 		$str
 	);
+	/*
 	if (preg_match('/#\.(mp4|ts|mkv|avi)$/', $str, $matches)) {
 		return mb_convert_kana($matches[1], 'KVa');
 	}
+	*/
 	return mb_convert_kana($str, 'KVa');
 }
 
 function getSubName($str) {
 	$base = replaceName($str);
 	$tmp = explode('.', $base);
-	$left = $tmp[0];
 	$exp = $tmp[count($tmp) - 1];
-	$name = str_replace('.'.$tmp[1], '', $str);
-	$tmp = explode('#', $name);
-	if (isset($tmp[1]) && strlen($tmp[1]) > 0) {
-		return array($tmp[0], $tmp[1], $exp);
+	$left = str_replace('.'.$exp, '', implode('', $tmp));
+	$regExp = '/(.+)#(.+)\.(mp4|ts)$/';
+	if (preg_match($regExp, $base, $matches)) {
+		$left = str_replace(
+			array('#'.$matches[2], $matches[3]), '', $base
+		);
+		return array($left, $matches[2], $exp);
 	}
-	$regExp = '/(.*)「(.*)」\.(ts|mp4)$/';
+
+	$regExp = '/(.+)#\.(ts|mp4)$/';
+	if (preg_match($regExp, $base, $matches)) {
+		return array($matches[1], '', $exp);
+	}
+	$regExp = '/(.+)「(.+)」\.(ts|mp4)$/';
 	if (preg_match($regExp, $base, $matches)) {
 		return array($matches[1], $matches[2], $exp);
 	}
-	$regExp = '/(.*)▽(.*)\.(ts|mp4)$/';
+	$regExp = '/(.+)▽(.+)\.(ts|mp4)$/';
 	if (preg_match($regExp, $base, $matches)) {
 		return array($matches[1], $matches[2], $exp);
 	}

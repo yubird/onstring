@@ -224,9 +224,9 @@ tr.reserved a {
 	line-height: 38px;
 	padding: 0 12px;
 	color: #ffffff;
-	user-select: none;
 	-moz-user-select: none;
 	-webkit-user-select: none;
+	user-select: none;
 }
 
 #player #controller {
@@ -320,9 +320,9 @@ tr.reserved a {
 	color: rgba(255,255,255,0.6);
 	cursor: default;
 	z-index: 3;
-	user-select: none;
 	-moz-user-select: none;
 	-webkit-user-select: none;
+	user-select: none;
 }
 
 #player #controller #volumeContainer {
@@ -810,10 +810,10 @@ tr.reserved a {
 	transition-duration: 0.4s;
 	transition-timing-function: linear;
 	opacity: 0.3;
-	user-select: none;
 	-moz-user-select: none;
 	-webkit-user-select: none;
 	-ms-user-select: none;
+	user-select: none;
 }
 
 #musicPlaylist #controller:hover,
@@ -1031,10 +1031,10 @@ tr.reserved a {
 	z-index: 0;
 	background-color: rgba(0,0,0,0.3);
 	border-radius: 4px;
-	user-select: none;
 	-moz-user-select: none;
 	-webkit-user-select: none;
 	-ms-user-select: none;
+	user-select: none;
 }
 
 #pageController {

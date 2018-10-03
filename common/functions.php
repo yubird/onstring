@@ -539,6 +539,7 @@ function searchFromPlaylist($playlist, $keyword) {
 		}
 		foreach ($pl['files'] as $fl) {
 			if (strpos($fl['title'], $keyword) !== false) {
+				$playlist[$k]['files'] = array($fl);
 				$res[] = $playlist[$k];
 				break;
 			}
@@ -546,6 +547,7 @@ function searchFromPlaylist($playlist, $keyword) {
 				isset($fl['artist']) &&
 				strpos($fl['artist'], $keyword) !== false
 			) {
+				$playlist[$k]['files'] = array($fl);
 				$res[] = $playlist[$k];
 				break;
 			}
